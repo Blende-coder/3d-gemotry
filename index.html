@@ -1,1 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Geometrical Shape</title>
+    <style>
+        /* Basic reset and centering */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body, html {
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f4f4f4;
+        }
 
+        /* Container for 3D Effect */
+        .scene {
+            width: 300px;
+            height: 300px;
+            perspective: 800px; /* Controls the depth of the 3D effect */
+        }
+
+        /* Cube Styling */
+        .cube {
+            width: 200px;
+            height: 200px;
+            position: relative;
+            transform-style: preserve-3d;
+            transform: rotateX(0deg) rotateY(0deg);
+            transition: transform 1s; /* Smooth transition when rotating */
+        }
+
+        /* Faces of the Cube */
+        .cube div {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background-color: rgba(0, 0, 255, 0.8);
+            border: 2px solid #333;
+        }
+
+        /* Position each face of the cube */
+        .front  { transform: translateZ(100px); background-color: rgba(255, 0, 0, 0.8); }
+        .back   { transform: rotateY(180deg) translateZ(100px); background-color: rgba(0, 255, 0, 0.8); }
+        .left   { transform: rotateY(-90deg) translateZ(100px); background-color: rgba(0, 0, 255, 0.8); }
+        .right  { transform: rotateY(90deg) translateZ(100px); background-color: rgba(255, 255, 0, 0.8); }
+        .top    { transform: rotateX(90deg) translateZ(100px); background-color: rgba(255, 0, 255, 0.8); }
+        .bottom { transform: rotateX(-90deg) translateZ(100px); background-color: rgba(0, 255, 255, 0.8); }
+
+    </style>
+</head>
+<body>
+    <!-- 3D Scene -->
+    <div class="scene">
+        <div class="cube" id="cube">
+            <div class="front"></div>
+            <div class="back"></div>
+            <div class="left"></div>
+            <div class="right"></div>
+            <div class="top"></div>
+            <div class="bottom"></div>
+        </div>
+    </div>
+
+    <!-- JavaScript to add mouse control for rotation -->
+    <script>
+        // Get the cube element
+        const cube = document.getElementById('cube');
+
+        // Variables to track mouse position
+        let mouseX = 0;
+        let mouseY = 0;
+
+        // Mouse move event listener
+        window.addEventListener('mousemove', (event) => {
+            // Calculate the mouse position relative to the center of the screen
+            mouseX = (event.clientX / window.innerWidth) * 360;
+            mouseY = (event.clientY / window.innerHeight) * 360;
+
+            // Apply rotation to the cube based on mouse position
+            cube.style.transform = `rotateX(${-mouseY}deg) rotateY(${mouseX}deg)`;
+        });
+    </script>
+</body>
+</html>
