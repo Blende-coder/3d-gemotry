@@ -1,0 +1,112 @@
+/* Basic reset and centering */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body, html {
+    height: 100%;
+    display: flex;
+    justify-content: center; /* Center content horizontally */
+    align-items: center; /* Center content vertically */
+    background-color: #f4f4f4;
+    flex-direction: column;
+}
+
+/* Nav bar styling */
+nav {
+    width: 100%;
+    background-color: #333;
+    padding: 15px;
+    color: white;
+    text-align: center;
+    font-size: 18px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+    cursor: pointer;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+/* Hide the section initially */
+#color-section {
+    display: none;
+    padding: 20px;
+    background-color: #fff;
+    width: 300px;
+    text-align: center;
+    margin-top: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    transition: all 0.5s ease-in-out;
+}
+
+/* Container for 3D Effect */
+.scene {
+    width: 300px;
+    height: 300px;
+    perspective: 800px;
+}
+
+/* Cube Styling */
+.cube {
+    width: 200px;
+    height: 200px;
+    position: relative;
+    transform-style: preserve-3d;
+    transform: rotateX(0deg) rotateY(0deg);
+    transition: transform 1s;
+}
+
+/* Faces of the Cube */
+.cube div {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    background-color: rgba(0, 0, 255, 0.8);
+    border: 2px solid #333;
+}
+
+/* Position each face of the cube */
+.front  { transform: translateZ(100px); background-color: rgba(255, 0, 0, 0.8); }
+.back   { transform: rotateY(180deg) translateZ(100px); background-color: rgba(0, 255, 0, 0.8); }
+.left   { transform: rotateY(-90deg) translateZ(100px); background-color: rgba(0, 0, 255, 0.8); }
+.right  { transform: rotateY(90deg) translateZ(100px); background-color: rgba(255, 255, 0, 0.8); }
+.top    { transform: rotateX(90deg) translateZ(100px); background-color: rgba(255, 0, 255, 0.8); }
+.bottom { transform: rotateX(-90deg) translateZ(100px); background-color: rgba(0, 255, 255, 0.8); }
+
+/* Color changer input styling */
+.color-input {
+    margin-top: 20px;
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #333;
+    border-radius: 5px;
+    width: 100%;
+    text-align: center;
+}
+
+/* Reset Button */
+.reset-btn, .close-btn {
+    margin-top: 10px;
+    padding: 10px 15px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.reset-btn:hover, .close-btn:hover {
+    background-color: #45a049;
+}
+
+/* Close Button Styling */
+.close-btn {
+    background-color: #f44336;
+}

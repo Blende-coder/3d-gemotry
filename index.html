@@ -4,100 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>3D Geometrical Shape with Color Changer</title>
-    <style>
-        /* Basic reset and centering */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body, html {
-            height: 100%;
-            display: flex;
-            justify-content: flex-start;
-            align-items: flex-start;
-            background-color: #f4f4f4;
-            flex-direction: column;
-        }
-
-        /* Nav bar styling */
-        nav {
-            width: 100%;
-            background-color: #333;
-            padding: 15px;
-            color: white;
-            text-align: center;
-            font-size: 18px;
-        }
-
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin: 0 15px;
-            cursor: pointer;
-        }
-
-        nav a:hover {
-            text-decoration: underline;
-        }
-
-        /* Hide the section initially */
-        #color-section {
-            display: none;
-            padding: 20px;
-            background-color: #fff;
-            width: 100%;
-            text-align: center;
-            margin-top: 20px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-            transition: all 0.5s ease-in-out;
-        }
-
-        /* Container for 3D Effect */
-        .scene {
-            width: 300px;
-            height: 300px;
-            perspective: 800px;
-        }
-
-        /* Cube Styling */
-        .cube {
-            width: 200px;
-            height: 200px;
-            position: relative;
-            transform-style: preserve-3d;
-            transform: rotateX(0deg) rotateY(0deg);
-            transition: transform 1s;
-        }
-
-        /* Faces of the Cube */
-        .cube div {
-            position: absolute;
-            width: 200px;
-            height: 200px;
-            background-color: rgba(0, 0, 255, 0.8);
-            border: 2px solid #333;
-        }
-
-        /* Position each face of the cube */
-        .front  { transform: translateZ(100px); background-color: rgba(255, 0, 0, 0.8); }
-        .back   { transform: rotateY(180deg) translateZ(100px); background-color: rgba(0, 255, 0, 0.8); }
-        .left   { transform: rotateY(-90deg) translateZ(100px); background-color: rgba(0, 0, 255, 0.8); }
-        .right  { transform: rotateY(90deg) translateZ(100px); background-color: rgba(255, 255, 0, 0.8); }
-        .top    { transform: rotateX(90deg) translateZ(100px); background-color: rgba(255, 0, 255, 0.8); }
-        .bottom { transform: rotateX(-90deg) translateZ(100px); background-color: rgba(0, 255, 255, 0.8); }
-
-        /* Color changer input styling */
-        .color-input {
-            margin-top: 20px;
-            padding: 10px;
-            font-size: 16px;
-            border: 2px solid #333;
-            border-radius: 5px;
-            width: 200px;
-            text-align: center;
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <!-- Navigation Bar -->
@@ -108,6 +15,8 @@
     <!-- Color Input Section (Hidden by default) -->
     <div id="color-section">
         <input type="text" class="color-input" id="colorCode" placeholder="Enter Hex Color Code" />
+        <button class="reset-btn" id="resetColor">Reset Color</button>
+        <button class="close-btn" id="closeSection">Close</button>
         <p>Enter a hex color code (e.g., #ff5733) to change the cube's color.</p>
     </div>
 
@@ -123,56 +32,7 @@
         </div>
     </div>
 
-    <!-- JavaScript for functionality -->
-    <script>
-        // Get the elements for cube and color input section
-        const cube = document.getElementById('cube');
-        const colorCodeInput = document.getElementById('colorCode');
-        const colorSection = document.getElementById('color-section');
-        const toggleColorSection = document.getElementById('toggleColorSection');
-
-        // Variables to track mouse position
-        let mouseX = 0;
-        let mouseY = 0;
-
-        // Mouse move event listener for cube rotation
-        window.addEventListener('mousemove', (event) => {
-            // Calculate the mouse position relative to the center of the screen
-            mouseX = (event.clientX / window.innerWidth) * 360;
-            mouseY = (event.clientY / window.innerHeight) * 360;
-
-            // Apply rotation to the cube based on mouse position
-            cube.style.transform = `rotateX(${-mouseY}deg) rotateY(${mouseX}deg)`;
-        });
-
-        // Toggle the visibility of the color input section when clicked
-        toggleColorSection.addEventListener('click', () => {
-            if (colorSection.style.display === 'none' || colorSection.style.display === '') {
-                colorSection.style.display = 'block';
-            } else {
-                colorSection.style.display = 'none';
-            }
-        });
-
-        // Function to change the color of the cube faces
-        colorCodeInput.addEventListener('input', (event) => {
-            const color = event.target.value;
-
-            // Validate if the input is a valid hex color
-            const hexRegex = /^#[0-9A-Fa-f]{6}$/;
-            if (hexRegex.test(color)) {
-                // Change color of each cube face
-                document.querySelector('.front').style.backgroundColor = color;
-                document.querySelector('.back').style.backgroundColor = color;
-                document.querySelector('.left').style.backgroundColor = color;
-                document.querySelector('.right').style.backgroundColor = color;
-                document.querySelector('.top').style.backgroundColor = color;
-                document.querySelector('.bottom').style.backgroundColor = color;
-            } else {
-                // Optionally, you can clear colors or show an error if the hex is invalid
-                console.log('Invalid hex code');
-            }
-        });
-    </script>
+    <!-- JavaScript File -->
+    <script src="script.js"></script>
 </body>
 </html>
