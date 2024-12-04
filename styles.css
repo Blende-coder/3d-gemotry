@@ -1,0 +1,77 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f8ff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+  }
+  
+  /* Navigation Bar */
+  nav {
+    background-color: #ffcc00;
+    width: 100%;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  }
+  
+  nav h1 {
+    font-size: 24px;
+    color: #333;
+  }
+  
+  /* 3D Scene */
+  .scene {
+    perspective: 800px;
+    width: 300px;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* Cartoon Shape */
+  .cartoon-shape {
+    width: 150px;
+    height: 150px;
+    position: relative;
+    transform-style: preserve-3d;
+    animation: rotate 6s infinite linear;
+  }
+  
+  .face {
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    background: linear-gradient(to bottom, #ff7f50, #ff4500);
+    border: 5px solid #ffa07a;
+    border-radius: 15px; /* Rounded edges for cartoon effect */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Positioning Each Face */
+  .front { transform: translateZ(75px); }
+  .back { transform: rotateY(180deg) translateZ(75px); }
+  .left { transform: rotateY(-90deg) translateZ(75px); }
+  .right { transform: rotateY(90deg) translateZ(75px); }
+  .top { transform: rotateX(90deg) translateZ(75px); }
+  .bottom { transform: rotateX(-90deg) translateZ(75px); }
+  
+  /* Animation */
+  @keyframes rotate {
+    0% { transform: rotateX(0deg) rotateY(0deg); }
+    25% { transform: rotateX(90deg) rotateY(0deg); }
+    50% { transform: rotateX(90deg) rotateY(90deg); }
+    75% { transform: rotateX(180deg) rotateY(90deg); }
+    100% { transform: rotateX(360deg) rotateY(360deg); }
+  }
+  
