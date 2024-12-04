@@ -51,15 +51,15 @@ nav a:hover {
 
 /* Container for 3D Effect */
 .scene {
-    width: 300px;
-    height: 300px;
+    width: 400px;
+    height: 400px;
     perspective: 800px;
 }
 
 /* Cube Styling */
 .cube {
-    width: 200px;
-    height: 200px;
+    width: 300px;
+    height: 300px;
     position: relative;
     transform-style: preserve-3d;
     transform: rotateX(0deg) rotateY(0deg);
@@ -73,6 +73,7 @@ nav a:hover {
     height: 200px;
     background-color: rgba(0, 0, 255, 0.8);
     border: 2px solid #333;
+    background-color: blue;
 }
 
 /* Position each face of the cube */
