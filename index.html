@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>3D Geometrical Shape</title>
+    <title>3D Geometrical Shape with Color Changer</title>
     <style>
         /* Basic reset and centering */
         * {
@@ -17,6 +17,7 @@
             justify-content: center;
             align-items: center;
             background-color: #f4f4f4;
+            flex-direction: column;
         }
 
         /* Container for 3D Effect */
@@ -53,9 +54,23 @@
         .top    { transform: rotateX(90deg) translateZ(100px); background-color: rgba(255, 0, 255, 0.8); }
         .bottom { transform: rotateX(-90deg) translateZ(100px); background-color: rgba(0, 255, 255, 0.8); }
 
+        /* Color changer input styling */
+        .color-input {
+            margin-top: 20px;
+            padding: 10px;
+            font-size: 16px;
+            border: 2px solid #333;
+            border-radius: 5px;
+            width: 200px;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
+    <!-- Color input for changing the cube's color -->
+    <input type="text" class="color-input" id="colorCode" placeholder="Enter Hex Color Code" />
+    <p>Enter a hex color code (e.g., #ff5733) to change the cube's color.</p>
+
     <!-- 3D Scene -->
     <div class="scene">
         <div class="cube" id="cube">
@@ -68,10 +83,11 @@
         </div>
     </div>
 
-    <!-- JavaScript to add mouse control for rotation -->
+    <!-- JavaScript to add mouse control and color change -->
     <script>
-        // Get the cube element
+        // Get the cube element and color input
         const cube = document.getElementById('cube');
+        const colorCodeInput = document.getElementById('colorCode');
 
         // Variables to track mouse position
         let mouseX = 0;
@@ -85,6 +101,26 @@
 
             // Apply rotation to the cube based on mouse position
             cube.style.transform = `rotateX(${-mouseY}deg) rotateY(${mouseX}deg)`;
+        });
+
+        // Function to change the color of the cube faces
+        colorCodeInput.addEventListener('input', (event) => {
+            const color = event.target.value;
+            
+            // Validate if the input is a valid hex color
+            const hexRegex = /^#[0-9A-Fa-f]{6}$/;
+            if (hexRegex.test(color)) {
+                // Change color of each cube face
+                document.querySelector('.front').style.backgroundColor = color;
+                document.querySelector('.back').style.backgroundColor = color;
+                document.querySelector('.left').style.backgroundColor = color;
+                document.querySelector('.right').style.backgroundColor = color;
+                document.querySelector('.top').style.backgroundColor = color;
+                document.querySelector('.bottom').style.backgroundColor = color;
+            } else {
+                // Optionally, you can clear colors or show an error if the hex is invalid
+                console.log('Invalid hex code');
+            }
         });
     </script>
 </body>
