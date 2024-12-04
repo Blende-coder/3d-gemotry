@@ -39,8 +39,8 @@ nav a:hover {
 #color-section {
   display: none;
   position: absolute;
-  top: 20px;
-  left: 20px;
+  top: 5%;
+  left: 5%;
   padding: 20px;
   background-color: #fff;
   width: 300px;
