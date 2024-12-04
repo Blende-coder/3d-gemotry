@@ -23,8 +23,6 @@ nav {
     left: 5%;
     color: white;
     display: flex;
-    justify-content: flex-start; /* Align content to the left */
-    align-items: left;
 }
 
 nav a {
