@@ -19,10 +19,12 @@ nav {
     width: 100%;
     background-color: #333;
     padding: 15px;
+    top: 5%;
+    left: 5%;
     color: white;
     display: flex;
     justify-content: flex-start; /* Align content to the left */
-    align-items: center;
+    align-items: ;
 }
 
 nav a {
