@@ -15,13 +15,10 @@ window.addEventListener('mousemove', (event) => {
     // Calculate the mouse position relative to the center of the screen
     mouseX = (event.clientX / window.innerWidth) * 360;
     mouseY = (event.clientY / window.innerHeight) * 360;
-  
-    // Reverse the mouseX value to invert the rotation direction
-    mouseX = -mouseX;
-  
-    // Apply rotation to the cube based on the reversed mouseX value
+
+    // Apply rotation to the cube based on mouse position
     cube.style.transform = `rotateX(${-mouseY}deg) rotateY(${mouseX}deg)`;
-  });
+});
 
 // Toggle the visibility of the color input section when clicked
 toggleColorSection.addEventListener('click', () => {
