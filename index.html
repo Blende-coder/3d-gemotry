@@ -14,17 +14,50 @@
         body, html {
             height: 100%;
             display: flex;
-            justify-content: center;
-            align-items: center;
+            justify-content: flex-start;
+            align-items: flex-start;
             background-color: #f4f4f4;
             flex-direction: column;
+        }
+
+        /* Nav bar styling */
+        nav {
+            width: 100%;
+            background-color: #333;
+            padding: 15px;
+            color: white;
+            text-align: center;
+            font-size: 18px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            cursor: pointer;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        /* Hide the section initially */
+        #color-section {
+            display: none;
+            padding: 20px;
+            background-color: #fff;
+            width: 100%;
+            text-align: center;
+            margin-top: 20px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+            transition: all 0.5s ease-in-out;
         }
 
         /* Container for 3D Effect */
         .scene {
             width: 300px;
             height: 300px;
-            perspective: 800px; /* Controls the depth of the 3D effect */
+            perspective: 800px;
         }
 
         /* Cube Styling */
@@ -34,7 +67,7 @@
             position: relative;
             transform-style: preserve-3d;
             transform: rotateX(0deg) rotateY(0deg);
-            transition: transform 1s; /* Smooth transition when rotating */
+            transition: transform 1s;
         }
 
         /* Faces of the Cube */
@@ -67,9 +100,16 @@
     </style>
 </head>
 <body>
-    <!-- Color input for changing the cube's color -->
-    <input type="text" class="color-input" id="colorCode" placeholder="Enter Hex Color Code" />
-    <p>Enter a hex color code (e.g., #ff5733) to change the cube's color.</p>
+    <!-- Navigation Bar -->
+    <nav>
+        <a id="toggleColorSection">Change Cube Color</a>
+    </nav>
+
+    <!-- Color Input Section (Hidden by default) -->
+    <div id="color-section">
+        <input type="text" class="color-input" id="colorCode" placeholder="Enter Hex Color Code" />
+        <p>Enter a hex color code (e.g., #ff5733) to change the cube's color.</p>
+    </div>
 
     <!-- 3D Scene -->
     <div class="scene">
@@ -83,17 +123,19 @@
         </div>
     </div>
 
-    <!-- JavaScript to add mouse control and color change -->
+    <!-- JavaScript for functionality -->
     <script>
-        // Get the cube element and color input
+        // Get the elements for cube and color input section
         const cube = document.getElementById('cube');
         const colorCodeInput = document.getElementById('colorCode');
+        const colorSection = document.getElementById('color-section');
+        const toggleColorSection = document.getElementById('toggleColorSection');
 
         // Variables to track mouse position
         let mouseX = 0;
         let mouseY = 0;
 
-        // Mouse move event listener
+        // Mouse move event listener for cube rotation
         window.addEventListener('mousemove', (event) => {
             // Calculate the mouse position relative to the center of the screen
             mouseX = (event.clientX / window.innerWidth) * 360;
@@ -103,10 +145,19 @@
             cube.style.transform = `rotateX(${-mouseY}deg) rotateY(${mouseX}deg)`;
         });
 
+        // Toggle the visibility of the color input section when clicked
+        toggleColorSection.addEventListener('click', () => {
+            if (colorSection.style.display === 'none' || colorSection.style.display === '') {
+                colorSection.style.display = 'block';
+            } else {
+                colorSection.style.display = 'none';
+            }
+        });
+
         // Function to change the color of the cube faces
         colorCodeInput.addEventListener('input', (event) => {
             const color = event.target.value;
-            
+
             // Validate if the input is a valid hex color
             const hexRegex = /^#[0-9A-Fa-f]{6}$/;
             if (hexRegex.test(color)) {
