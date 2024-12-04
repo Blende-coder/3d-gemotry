@@ -9,6 +9,9 @@ function handlePointerDown(e) {
   isDragging = true;
   startX = e.clientX || e.touches[0].clientX;
   startY = e.clientY || e.touches[0].clientY;
+
+  // Add a grabbing cursor for better UX
+  cartoonShape.style.cursor = 'grabbing';
 }
 
 // Handle mouse/touch move
@@ -18,7 +21,7 @@ function handlePointerMove(e) {
   const currentX = e.clientX || e.touches[0].clientX;
   const currentY = e.clientY || e.touches[0].clientY;
 
-  // Calculate the rotation change
+  // Calculate the rotation change based on cursor movement
   const deltaX = currentX - startX;
   const deltaY = currentY - startY;
 
@@ -29,7 +32,7 @@ function handlePointerMove(e) {
   // Apply the rotation to the shape
   cartoonShape.style.transform = `rotateX(${currentRotationX}deg) rotateY(${currentRotationY}deg)`;
 
-  // Update starting point for next calculation
+  // Update starting point for the next calculation
   startX = currentX;
   startY = currentY;
 }
@@ -37,13 +40,16 @@ function handlePointerMove(e) {
 // Handle mouse/touch end
 function handlePointerUp() {
   isDragging = false;
+
+  // Restore the default cursor
+  cartoonShape.style.cursor = 'grab';
 }
 
 // Add event listeners for mouse and touch
 cartoonShape.addEventListener('mousedown', handlePointerDown);
 cartoonShape.addEventListener('mousemove', handlePointerMove);
 cartoonShape.addEventListener('mouseup', handlePointerUp);
-cartoonShape.addEventListener('mouseleave', handlePointerUp); // Stop dragging if mouse leaves
+cartoonShape.addEventListener('mouseleave', handlePointerUp); // Stop dragging if the cursor leaves the shape
 
 cartoonShape.addEventListener('touchstart', handlePointerDown);
 cartoonShape.addEventListener('touchmove', handlePointerMove);
