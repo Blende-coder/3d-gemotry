@@ -12,6 +12,12 @@ function handlePointerDown(e) {
 
   // Add a grabbing cursor for better UX
   cartoonShape.style.cursor = 'grabbing';
+
+  // Add global listeners for smooth dragging
+  window.addEventListener('mousemove', handlePointerMove);
+  window.addEventListener('touchmove', handlePointerMove);
+  window.addEventListener('mouseup', handlePointerUp);
+  window.addEventListener('touchend', handlePointerUp);
 }
 
 // Handle mouse/touch move
@@ -43,14 +49,14 @@ function handlePointerUp() {
 
   // Restore the default cursor
   cartoonShape.style.cursor = 'grab';
+
+  // Remove global listeners when dragging stops
+  window.removeEventListener('mousemove', handlePointerMove);
+  window.removeEventListener('touchmove', handlePointerMove);
+  window.removeEventListener('mouseup', handlePointerUp);
+  window.removeEventListener('touchend', handlePointerUp);
 }
 
-// Add event listeners for mouse and touch
+// Add event listeners for mouse and touch on the shape
 cartoonShape.addEventListener('mousedown', handlePointerDown);
-cartoonShape.addEventListener('mousemove', handlePointerMove);
-cartoonShape.addEventListener('mouseup', handlePointerUp);
-cartoonShape.addEventListener('mouseleave', handlePointerUp); // Stop dragging if the cursor leaves the shape
-
 cartoonShape.addEventListener('touchstart', handlePointerDown);
-cartoonShape.addEventListener('touchmove', handlePointerMove);
-cartoonShape.addEventListener('touchend', handlePointerUp);
