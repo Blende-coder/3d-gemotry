@@ -1,8 +1,8 @@
 const cartoonShape = document.querySelector('.cartoon-shape');
 let isDragging = false;
 let startX, startY;
-let currentRotationX = 0;
-let currentRotationY = 0;
+let rotationX = 0;
+let rotationY = 0;
 
 // Handle mouse/touch start
 function handlePointerDown(e) {
@@ -31,12 +31,12 @@ function handlePointerMove(e) {
   const deltaX = currentX - startX;
   const deltaY = currentY - startY;
 
-  // Update rotation angles
-  currentRotationY += deltaX * 0.3; // Horizontal movement rotates around Y-axis
-  currentRotationX -= deltaY * 0.3; // Vertical movement rotates around X-axis
+  // Update rotation values
+  rotationY += deltaX * 0.3; // Horizontal movement rotates around Y-axis
+  rotationX -= deltaY * 0.3; // Vertical movement rotates around X-axis
 
-  // Apply the rotation to the shape
-  cartoonShape.style.transform = `rotateX(${currentRotationX}deg) rotateY(${currentRotationY}deg)`;
+  // Apply rotation to the shape
+  cartoonShape.style.transform = `rotateX(${rotationX}deg) rotateY(${rotationY}deg)`;
 
   // Update starting point for the next calculation
   startX = currentX;
