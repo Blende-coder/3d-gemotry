@@ -1,0 +1,5 @@
+1) reset point after every grab action 
+2) baground revamp
+3) nav menu b{2}
+4) shadow bug fix
+5) mouse torn 
